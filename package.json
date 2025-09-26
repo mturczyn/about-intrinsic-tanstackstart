@@ -1,28 +1,28 @@
 {
-  "name": "about-intrinsic-ssr",
-  "version": "1.0.0",
-  "description": "Page about Michal Turczyn Intrinsic company.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Michal Turczyn",
-  "license": "ISC",
-  "dependencies": {
-    "@tanstack/react-router": "^1.132.7",
-    "@tanstack/react-start": "^1.131.50",
-    "@vitejs/plugin-react": "^5.0.3",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "vite": "^7.1.7"
-  },
-  "devDependencies": {
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
-    "typescript": "^5.9.2",
-    "vite-tsconfig-paths": "^5.1.4"
-  }
+    "name": "about-intrinsic-ssr",
+    "version": "1.0.0",
+    "description": "Page about Michal Turczyn Intrinsic company.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Michal Turczyn",
+    "license": "ISC",
+    "dependencies": {
+        "@tanstack/react-start": "^1.132.9",
+        "@tanstack/react-router": "^1.132.7",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "vite": "^7.1.7"
+    },
+    "devDependencies": {
+        "@types/react": "^19.1.13",
+        "@types/react-dom": "^19.1.9",
+        "@vitejs/plugin-react": "^5.0.3",
+        "typescript": "^5.9.2",
+        "vite-tsconfig-paths": "^5.1.4"
+    }
 }

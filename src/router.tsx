@@ -1,11 +1,11 @@
-import * as ReactRouter from '@tanstack/react-router'
+import { createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 
-export function createRouter() {
-  const router = ReactRouter.createRouter({
-    routeTree,
-    scrollRestoration: true,
-  })
+export function getRouter() {
+    const router = createRouter({
+        routeTree,
+        scrollRestoration: true,
+    })
 
-  return router
+    return router
 }
