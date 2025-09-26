@@ -1,35 +1,28 @@
 {
   "name": "about-intrinsic-ssr",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Page about Michal Turczyn Intrinsic company.",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
-    "start": "vite --port 3000",
-    "build": "vite build && tsc",
-    "serve": "vite preview",
-    "test": "vitest run"
+    "dev": "vite dev",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Michal Turczyn",
+  "license": "ISC",
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.6",
-    "@tanstack/react-devtools": "^0.2.2",
-    "@tanstack/react-router": "^1.132.0",
-    "@tanstack/react-router-devtools": "^1.132.0",
-    "@tanstack/router-plugin": "^1.132.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.6"
+    "@tanstack/react-router": "^1.132.7",
+    "@tanstack/react-start": "^1.131.50",
+    "@vitejs/plugin-react": "^5.0.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "vite": "^7.1.7"
   },
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^4.3.4",
-    "jsdom": "^26.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.3.5",
-    "vitest": "^3.0.5",
-    "web-vitals": "^4.2.4"
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "^5.9.2",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

@@ -1,39 +1,48 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import * as fs from 'node:fs'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/react-start'
 
-export const Route = createFileRoute('/')({
-  component: App,
+const filePath = 'count.txt'
+
+async function readCount() {
+  return parseInt(
+    await fs.promises.readFile(filePath, 'utf-8').catch(() => '0'),
+  )
+}
+
+const getCount = createServerFn({
+  method: 'GET',
+}).handler(() => {
+  return readCount()
 })
 
-function App() {
+const updateCount = createServerFn({ method: 'POST' })
+//   .inputValidator((d: number) => d)
+  .handler(async ({ data }) => {
+    const count = await readCount()
+    await fs.promises.writeFile(filePath, `${count + (data ?? 0)}`)
+  })
+
+// export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/')({
+  component: Home,
+  loader: async () => await getCount(),
+})
+
+function Home() {
+  const router = useRouter()
+  const state = Route.useLoaderData()
+
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
-    </div>
+    <button
+      type="button"
+      onClick={() => {
+        updateCount(/*{ data: 1 }*/).then(() => {
+          router.invalidate()
+        })
+      }}
+    >
+      Add 1 to {state}?
+    </button>
   )
 }
