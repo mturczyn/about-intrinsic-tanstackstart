@@ -12,10 +12,14 @@
     "author": "Michal Turczyn",
     "license": "ISC",
     "dependencies": {
-        "@tanstack/react-start": "^1.132.9",
         "@tanstack/react-router": "^1.132.7",
+        "@tanstack/react-start": "^1.132.9",
+        "i18next": "^25.5.2",
+        "i18next-browser-languagedetector": "^8.2.0",
+        "i18next-http-backend": "^3.0.2",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
+        "react-i18next": "^16.0.0",
         "vite": "^7.1.7"
     },
     "devDependencies": {

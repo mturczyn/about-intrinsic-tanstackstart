@@ -1,12 +1,18 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import {
     Outlet,
     createRootRoute,
     HeadContent,
     Scripts,
+    useRouter,
 } from '@tanstack/react-router'
+import { setSsrLanguage } from '../i18n'
+import { useTranslation } from 'react-i18next'
 
 export const Route = createRootRoute({
+    // beforeLoad: async () => {
+    //     await setSsrLanguage()
+    // },
     head: () => ({
         meta: [
             {
@@ -33,8 +39,20 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+    const { i18n } = useTranslation()
+    const router = useRouter()
+
+    useEffect(() => {
+        const handler = () => {
+            router.invalidate()
+        }
+        i18n.on('languageChanged', handler)
+        return () => {
+            i18n.off('languageChanged', handler)
+        }
+    }, [router])
     return (
-        <html>
+        <html lang={i18n.language}>
             <head>
                 <HeadContent />
             </head>
