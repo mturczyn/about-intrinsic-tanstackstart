@@ -2,10 +2,9 @@ import { en } from './en'
 import { pl } from './pl'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import HttpBackend from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { createIsomorphicFn } from '@tanstack/react-start'
-import { getCookie } from '@tanstack/react-start/server'
+import { getRequestUrl } from '@tanstack/react-start/server'
 
 export const SUPPORTED_LANGUAGES = { pl: 'pl-PL', en: 'en-US' }
 
@@ -21,9 +20,7 @@ export const resources = {
     },
 }
 
-const i18CookieName = 'intrinsic-language'
-i18n.use(HttpBackend)
-    .use(LanguageDetector)
+i18n.use(LanguageDetector)
     .use(initReactI18next)
     .init({
         resources,
@@ -45,9 +42,9 @@ i18n.use(HttpBackend)
         },
     })
 
-// export const setSsrLanguage = createIsomorphicFn().server(async () => {
-//     const language = getCookie(i18CookieName)
-//     await i18n.changeLanguage(language || SUPPORTED_LANGUAGES.en)
-// })
+export const setSsrLanguage = createIsomorphicFn().server(async () => {
+    const language = getRequestUrl().pathname.split('/').filter(Boolean)[0]
+    await i18n.changeLanguage(language || SUPPORTED_LANGUAGES.en)
+})
 
 export default i18n

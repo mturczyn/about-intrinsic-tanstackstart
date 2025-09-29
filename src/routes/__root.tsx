@@ -6,13 +6,13 @@ import {
     Scripts,
     useRouter,
 } from '@tanstack/react-router'
-import { setSsrLanguage } from '../i18n'
 import { useTranslation } from 'react-i18next'
+import { setSsrLanguage } from '../i18n'
 
 export const Route = createRootRoute({
-    // beforeLoad: async () => {
-    //     await setSsrLanguage()
-    // },
+    beforeLoad: async () => {
+        await setSsrLanguage()
+    },
     head: () => ({
         meta: [
             {
