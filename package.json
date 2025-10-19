@@ -7,7 +7,10 @@
     "scripts": {
         "dev": "vite dev",
         "build": "vite build",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "preview": "vite preview",
+        "deploy": "wrangler deploy",
+        "cf-typegen": "wrangler types"
     },
     "author": "Michal Turczyn",
     "license": "ISC",
@@ -23,10 +26,12 @@
         "vite": "^7.1.7"
     },
     "devDependencies": {
+        "@cloudflare/vite-plugin": "^1.13.13",
         "@types/react": "^19.1.13",
         "@types/react-dom": "^19.1.9",
         "@vitejs/plugin-react": "^5.0.3",
         "typescript": "^5.9.2",
-        "vite-tsconfig-paths": "^5.1.4"
+        "vite-tsconfig-paths": "^5.1.4",
+        "wrangler": "^4.43.0"
     }
 }
