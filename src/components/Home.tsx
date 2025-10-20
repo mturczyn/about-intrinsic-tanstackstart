@@ -13,6 +13,7 @@ import reactLogo from '../images/react-logo.svg'
 import styles from './Home.module.css'
 import { Trans, useTranslation } from 'react-i18next'
 import i18n, { SUPPORTED_LANGUAGES } from '../i18n'
+import { Image } from '@unpic/react'
 
 export const Home = () => {
     const { t } = useTranslation()
@@ -33,7 +34,12 @@ export const Home = () => {
                     Change language (current: {i18n.language})
                 </button>
                 <header className={styles['home-header']}>
-                    <img src={authorImage} alt="me" />
+                    <Image
+                        src={authorImage}
+                        alt="Author"
+                        width={170}
+                        height={200}
+                    ></Image>
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
