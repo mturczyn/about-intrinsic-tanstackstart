@@ -1,19 +1,17 @@
-import authorImage from '../images/author-image.jpg'
-import arcelorMittal from '../images/employers-logos/arcelormittal.png'
-import flightScope from '../images/employers-logos/Flightscope.webp'
-import exadel from '../images/employers-logos/exadel.png'
-import rite from '../images/employers-logos/rite-nrg.png'
-import rac from '../images/employers-logos/rac.png'
-import rsm from '../images/employers-logos/rsm.png'
-import ocuco from '../images/employers-logos/ocuco-logo.png'
-import cSharpLogoHash from '../images/programming-languages-logo/c-sharp-hash.png'
-import cSharpLogoWithoutHash from '../images/programming-languages-logo/c-sharp-without-hash.png'
-import jsLogo from '../images/programming-languages-logo/js-logo.webp'
-import reactLogo from '../images/react-logo.svg'
-import styles from './Home.module.css'
+import authorImage from '@/images/author-image.jpg'
+import arcelorMittal from '@/images/employers-logos/arcelormittal.png'
+import flightScope from '@/images/employers-logos/Flightscope.webp'
+import exadel from '@/images/employers-logos/exadel.png'
+import rite from '@/images/employers-logos/rite-nrg.png'
+import rac from '@/images/employers-logos/rac.png'
+import rsm from '@/images/employers-logos/rsm.png'
+import ocuco from '@/images/employers-logos/ocuco-logo.png'
+import cSharpLogoHash from '@/images/programming-languages-logo/c-sharp-hash.png'
+import cSharpLogoWithoutHash from '@/images/programming-languages-logo/c-sharp-without-hash.png'
+import jsLogo from '@/images/programming-languages-logo/js-logo.webp'
+import reactLogo from '@/images/react-logo.svg'
 import { Trans, useTranslation } from 'react-i18next'
-import i18n, { SUPPORTED_LANGUAGES } from '../i18n'
-import { Image } from '@unpic/react'
+import i18n, { SUPPORTED_LANGUAGES } from '@/i18n'
 
 export const Home = () => {
     const { t } = useTranslation()
@@ -25,7 +23,6 @@ export const Home = () => {
                 : SUPPORTED_LANGUAGES.en
         i18n.changeLanguage(lng)
     }
-    // usePageTitle(t(PAGE_TITLE))
 
     return (
         <>
@@ -33,37 +30,39 @@ export const Home = () => {
                 <button onClick={setLanguage}>
                     Change language (current: {i18n.language})
                 </button>
-                <header className={styles['home-header']}>
-                    <Image
+                <header className="home-header">
+                    <img
                         src={authorImage}
                         alt="Author"
-                        width={170}
-                        height={200}
-                    ></Image>
+                        className="author-image"
+                    />
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
-                    <div className={styles['programming-languages']}>
-                        <div className={styles['csharp']}>
-                            <img src={cSharpLogoWithoutHash} alt="C#" />
+
+                    <div className={'programming-languages'}>
+                        <div className="csharp">
+                            <img
+                                src={cSharpLogoWithoutHash}
+                                alt="C#"
+                                className="c-sharp"
+                            />
                             <img
                                 src={cSharpLogoHash}
-                                className={styles['c-sharp-hash']}
+                                alt="C# hash"
+                                className="c-sharp-hash"
                             />
                         </div>
-                        <img
-                            src={jsLogo}
-                            alt="JavaScript"
-                            className={styles['js']}
-                        />
+                        <img src={jsLogo} alt="JavaScript" className="js" />
                         <div>
                             <img
                                 src={reactLogo}
                                 alt="React"
-                                className={styles['react']}
+                                className="react"
                             />
                         </div>
                     </div>
+
                     <p>{t('homePageIntroduction.thirdPara')}</p>
                     <Trans i18nKey="homePageIntroduction.fourthPara">
                         <p>
@@ -82,7 +81,7 @@ export const Home = () => {
                         'I have worked for following companies throughout my career:'
                     )}
                 </p>
-                <div className={styles['logos']}>
+                <div className="logos">
                     <EmployersLogos />
                     <EmployersLogos />
                 </div>
@@ -92,7 +91,7 @@ export const Home = () => {
 }
 
 const EmployersLogos = () => (
-    <ul role="list" className={styles['logos-slide']}>
+    <ul role="list" className="logos-slide">
         <li>
             <img src={ocuco} alt="Ocuco" />
         </li>
