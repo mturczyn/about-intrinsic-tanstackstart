@@ -26,39 +26,48 @@ export const Home = () => {
 
     return (
         <>
-            <div>
-                <button onClick={setLanguage}>
+            <div className="[&_p]:my-4 [&_p]:mx-4 [&_p]:leading-7">
+                <button
+                    onClick={setLanguage}
+                    className="m-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
+                >
                     Change language (current: {i18n.language})
                 </button>
-                <header className="home-header">
+                <header className="bg-[rgb(var(--main-bg-color))]">
                     <img
                         src={authorImage}
                         alt="Author"
-                        className="author-image"
+                        className="rounded-[10%] w-[30%] float-right m-6 mr-8 pointer-events-none"
                     />
-                    <h1>{t('helloWithIntro')}</h1>
+                    <h1 className="mx-4 my-4 text-4xl font-bold">
+                        {t('helloWithIntro')}
+                    </h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
 
-                    <div className={'programming-languages'}>
-                        <div className="csharp">
+                    <div className="float-left m-6 w-[30%] grid place-items-center grid-cols-[2fr_1fr] grid-rows-2 [grid-template-areas:'csharp_js'_'csharp_react']">
+                        <div className="relative [grid-area:csharp]">
                             <img
                                 src={cSharpLogoWithoutHash}
                                 alt="C#"
-                                className="c-sharp"
+                                className="w-full h-full object-contain"
                             />
                             <img
                                 src={cSharpLogoHash}
                                 alt="C# hash"
-                                className="c-sharp-hash"
+                                className="absolute h-[20%] left-[32%] top-[38%] animate-[rotateY_7s_infinite_linear]"
                             />
                         </div>
-                        <img src={jsLogo} alt="JavaScript" className="js" />
-                        <div>
+                        <img
+                            src={jsLogo}
+                            alt="JavaScript"
+                            className="w-full h-full object-contain [grid-area:js]"
+                        />
+                        <div className="[grid-area:react] m-[0.7ch]">
                             <img
                                 src={reactLogo}
                                 alt="React"
-                                className="react"
+                                className="w-full h-full object-contain animate-[rotateZ_7s_infinite_linear]"
                             />
                         </div>
                     </div>
@@ -75,13 +84,13 @@ export const Home = () => {
                     </Trans>
                 </header>
 
-                <h1>{t('pastEmployers')}</h1>
+                <h1 className="mx-4 my-4">{t('pastEmployers')}</h1>
                 <p>
                     {t(
                         'I have worked for following companies throughout my career:'
                     )}
                 </p>
-                <div className="logos">
+                <div className="w-full overflow-x-hidden whitespace-nowrap overflow-y-visible relative before:absolute before:top-0 before:left-0 before:w-[250px] before:h-full before:content-[''] before:z-[2] before:bg-gradient-to-l before:from-[rgb(var(--main-bg-color),0)] before:to-[rgb(var(--main-bg-color),1)] after:absolute after:top-0 after:right-0 after:w-[250px] after:h-full after:content-[''] after:z-[2] after:bg-gradient-to-r after:from-[rgb(var(--main-bg-color),0)] after:to-[rgb(var(--main-bg-color),1)] hover:[&>ul]:pause">
                     <EmployersLogos />
                     <EmployersLogos />
                 </div>
@@ -91,7 +100,10 @@ export const Home = () => {
 }
 
 const EmployersLogos = () => (
-    <ul role="list" className="logos-slide">
+    <ul
+        role="list"
+        className="min-w-full flex-row flex-nowrap inline-flex justify-around items-center animate-[slide_20s_infinite_linear] overflow-y-visible [&>*]:inline [&>*]:flex-[1_1_auto] [&_img]:brightness-125 [&_img]:max-h-[20vh] [&_img]:max-w-[200px] [&_img]:mx-10 [&_img]:my-0"
+    >
         <li>
             <img src={ocuco} alt="Ocuco" />
         </li>

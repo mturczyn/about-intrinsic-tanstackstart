@@ -8,6 +8,7 @@ import {
 } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { setSsrLanguage } from '../i18n'
+import appCss from '@/styles/app.css?url'
 
 export const Route = createRootRoute({
     beforeLoad: async () => {
@@ -31,14 +32,14 @@ export const Route = createRootRoute({
                 rel: 'icon',
                 href: '/favicon.ico',
             },
-            {
-                rel: 'preload',
-                href: '/src/components/Home.css',
-                as: 'style',
-            },
+            // {
+            //     rel: 'preload',
+            //     href: appCss,
+            //     as: 'style',
+            // },
             {
                 rel: 'stylesheet',
-                href: '/src/components/Home.css',
+                href: appCss,
             },
         ],
     }),

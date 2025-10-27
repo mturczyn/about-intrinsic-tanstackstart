@@ -1,0 +1,30 @@
+/* src/styles/app.css */
+@import 'tailwindcss';
+
+@keyframes rotateY {
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes rotateZ {
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Utility class for pausing animation on hover */
+@layer utilities {
+    .pause {
+        animation-play-state: paused;
+    }
+}

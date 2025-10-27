@@ -15,6 +15,7 @@
     "author": "Michal Turczyn",
     "license": "ISC",
     "dependencies": {
+        "@tailwindcss/vite": "^4.1.16",
         "@tanstack/react-router": "^1.132.7",
         "@tanstack/react-start": "^1.132.9",
         "i18next": "^25.5.2",
@@ -23,6 +24,7 @@
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
         "react-i18next": "^16.0.0",
+        "tailwindcss": "^4.1.16",
         "vite": "^7.1.7"
     },
     "devDependencies": {
