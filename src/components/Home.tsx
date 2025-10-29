@@ -11,37 +11,22 @@ import cSharpLogoWithoutHash from '@/images/programming-languages-logo/c-sharp-w
 import jsLogo from '@/images/programming-languages-logo/js-logo.webp'
 import reactLogo from '@/images/react-logo.svg'
 import { Trans, useTranslation } from 'react-i18next'
-import i18n, { SUPPORTED_LANGUAGES } from '@/i18n'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export const Home = () => {
     const { t } = useTranslation()
 
-    const setLanguage = () => {
-        const lng =
-            SUPPORTED_LANGUAGES.en === i18n.language
-                ? SUPPORTED_LANGUAGES.pl
-                : SUPPORTED_LANGUAGES.en
-        i18n.changeLanguage(lng)
-    }
-
     return (
         <>
-            <div className="[&_p]:my-4 [&_p]:mx-4 [&_p]:leading-7">
-                <button
-                    onClick={setLanguage}
-                    className="m-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
-                >
-                    Change language (current: {i18n.language})
-                </button>
+            <LanguageSwitcher />
+            <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(var(--main-bg-color))]">
                     <img
                         src={authorImage}
                         alt="Author"
                         className="rounded-[10%] w-[30%] float-right m-6 mr-8 pointer-events-none"
                     />
-                    <h1 className="mx-4 my-4 text-4xl font-bold">
-                        {t('helloWithIntro')}
-                    </h1>
+                    <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
 
@@ -55,7 +40,7 @@ export const Home = () => {
                             <img
                                 src={cSharpLogoHash}
                                 alt="C# hash"
-                                className="absolute h-[20%] left-[32%] top-[38%] animate-[rotateY_7s_infinite_linear]"
+                                className="absolute h-[20%] left-[72%] top-[40%] animate-[rotateY_7s_infinite_linear]"
                             />
                         </div>
                         <img
@@ -77,6 +62,11 @@ export const Home = () => {
                         <p>
                             <a
                                 href="https://about-intrinsic-nextjs.vercel.app"
+                                rel="noopener"
+                                target="_blank"
+                            ></a>
+                            <a
+                                href="https://intrinsic-michal-turczyn.azurewebsites.net"
                                 rel="noopener"
                                 target="_blank"
                             ></a>

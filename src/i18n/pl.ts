@@ -29,7 +29,7 @@ export const pl = {
                         Jestem absolwentem matematyki, co bardzo pomogło mi w zdobywaniu umiejętności programowania.`,
         thirdPara: `Mój pierwszy język programowania, który nauczyłem się, to C# wraz z frameworkiem WinForms. Przez lata miałem okazję pracować z wieloma frameworkami .NET, takimi jak ASP.NET (Core, Razor Pages) czy WPF, Blazor. Nauczyłem się również JS (HTML, CSS, JS) i frameworka React.`,
         fourthPara:
-            '<0>Staram się ciągle uczyć i rozwijać. Po zbudowaniu tej strony zacząłem uczyć się Next.js, aby zgłębić React Server Components. Stworzyłem <0>kolejną stronę</0> z wykorzystaniem Next.js, jako projekt edukacyjny.</0>',
+            '<0>Staram się ciągle uczyć i rozwijać. Ta strona jest obecnie zbudowana w oparciu o framework TanStack Start. Wcześniej stworzyłem <0>wersję w Next.js</0>, aby poznać React Server Components, a także <1>samodzielną aplikację SPA w czystym React</1> bez renderowania po stronie serwera.</0>',
     },
     pastEmployers: 'Poprzedni pracodawcy',
     Poland: 'Polska',
