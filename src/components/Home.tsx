@@ -1,4 +1,3 @@
-import authorImage from '@/images/author-image.jpg'
 import arcelorMittal from '@/images/employers-logos/arcelormittal.png'
 import flightScope from '@/images/employers-logos/Flightscope.webp'
 import exadel from '@/images/employers-logos/exadel.png'
@@ -13,6 +12,11 @@ import reactLogo from '@/images/react-logo.svg'
 import { Trans, useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
 
+import authorImage100 from '@/images/author-image.jpg?small'
+import authorImage200 from '@/images/author-image.jpg?medium'
+import authorImage400 from '@/images/author-image.jpg?big'
+import authorImage from '@/images/author-image.jpg'
+
 export const Home = () => {
     const { t } = useTranslation()
 
@@ -22,7 +26,16 @@ export const Home = () => {
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(var(--main-bg-color))]">
                     <img
-                        src={authorImage}
+                        src={authorImage400}
+                        srcSet={`
+                            ${authorImage100} 400w,
+                            ${authorImage200} 800w,
+                            ${authorImage400} 1600w,
+                            ${authorImage}
+                        `}
+                        sizes="(max-width: 640px) 80vw, 
+                               (max-width: 1024px) 50vw, 
+                               30vw"
                         alt="Author"
                         className="rounded-[10%] w-[30%] float-right m-6 mr-8 pointer-events-none"
                     />
