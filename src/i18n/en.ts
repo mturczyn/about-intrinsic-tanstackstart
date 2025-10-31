@@ -25,7 +25,7 @@ export const en = {
                         experience other .NET frameworks, such as ASP.NET (Core, Razor Pages) or WPF. I also leanred JS along the way (HTML, CSS, JS)
                         and React framework.`,
         fourthPara:
-            '<0>I try to constantly learn and improve. This website is now built with the TanStack Start framework. Previously, I created <1>a version using Next.js</1> to explore React Server Components, and also built <1>a standalone React SPA</1> without server-side rendering.</0>',
+            '<0>I try to constantly learn and improve. This website is now built with the TanStack Start framework. Previously, I created <0>a version using Next.js</0> to explore React Server Components, and also built <1>a standalone React SPA</1> without server-side rendering.</0>',
     },
     pastEmployers: 'Past employers',
     Poland: 'Poland',
