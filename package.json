@@ -33,6 +33,7 @@
         "@types/react-dom": "^19.1.9",
         "@unpic/react": "^1.0.1",
         "@vitejs/plugin-react": "^5.0.3",
+        "tanstack-router-sitemap": "^1.0.13",
         "typescript": "^5.9.2",
         "vite-tsconfig-paths": "^5.1.4",
         "wrangler": "^4.43.0"

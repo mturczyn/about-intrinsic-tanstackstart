@@ -5,6 +5,8 @@ import viteReact from '@vitejs/plugin-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
+import { generateSitemap } from 'tanstack-router-sitemap'
+import { sitemap } from './src/utils/sitemap'
 
 export default defineConfig({
     server: {
@@ -14,6 +16,7 @@ export default defineConfig({
         viteTsConfigPaths({
             projects: ['./tsconfig.json'],
         }),
+        generateSitemap(sitemap),
         cloudflare({ viteEnvironment: { name: 'ssr' } }),
         tsConfigPaths({}),
         tanstackStart({}),
