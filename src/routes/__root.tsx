@@ -24,7 +24,15 @@ export const Route = createRootRoute({
                 content: 'width=device-width, initial-scale=1',
             },
             {
-                title: 'TanStack Start Starter',
+                title: 'Intrinsic | Web Development and Programming',
+            },
+            {
+                property: 'og:title',
+                content: 'Intrinsic | Web Development and Programming',
+            },
+            {
+                property: 'twitter:title',
+                content: 'Intrinsic | Web Development and Programming',
             },
         ],
         links: [
