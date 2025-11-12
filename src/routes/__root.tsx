@@ -14,43 +14,46 @@ export const Route = createRootRoute({
     beforeLoad: async () => {
         await setSsrLanguage()
     },
-    head: () => ({
-        meta: [
-            {
-                charSet: 'utf-8',
-            },
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1',
-            },
-            {
-                title: 'Intrinsic | Web Development and Programming',
-            },
-            {
-                property: 'og:title',
-                content: 'Intrinsic | Web Development and Programming',
-            },
-            {
-                property: 'twitter:title',
-                content: 'Intrinsic | Web Development and Programming',
-            },
-        ],
-        links: [
-            {
-                rel: 'icon',
-                href: '/favicon.ico',
-            },
-            // {
-            //     rel: 'preload',
-            //     href: appCss,
-            //     as: 'style',
-            // },
-            {
-                rel: 'stylesheet',
-                href: appCss,
-            },
-        ],
-    }),
+    head: () => {
+        const title = 'Intrinsic | Web Development and Programming'
+        return {
+            meta: [
+                {
+                    charSet: 'utf-8',
+                },
+                {
+                    name: 'viewport',
+                    content: 'width=device-width, initial-scale=1',
+                },
+                {
+                    title: title,
+                },
+                {
+                    name: 'og:title',
+                    content: title,
+                },
+                {
+                    name: 'twitter:title',
+                    content: title,
+                },
+            ],
+            links: [
+                {
+                    rel: 'icon',
+                    href: '/favicon.ico',
+                },
+                // {
+                //     rel: 'preload',
+                //     href: appCss,
+                //     as: 'style',
+                // },
+                {
+                    rel: 'stylesheet',
+                    href: appCss,
+                },
+            ],
+        }
+    },
     component: RootComponent,
 })
 

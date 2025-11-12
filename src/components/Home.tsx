@@ -24,7 +24,7 @@ export const Home = () => {
         <>
             <LanguageSwitcher />
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
-                <header className="bg-[rgb(var(--main-bg-color))]">
+                <header className="bg-[rgb(255,255,255)]">
                     <img
                         src={authorImage400}
                         srcSet={`
@@ -93,7 +93,7 @@ export const Home = () => {
                         'I have worked for following companies throughout my career:'
                     )}
                 </p>
-                <div className="w-full overflow-x-hidden whitespace-nowrap overflow-y-visible relative before:absolute before:top-0 before:left-0 before:w-[250px] before:h-full before:content-[''] before:z-[2] before:bg-gradient-to-l before:from-[rgb(var(--main-bg-color),0)] before:to-[rgb(var(--main-bg-color),1)] after:absolute after:top-0 after:right-0 after:w-[250px] after:h-full after:content-[''] after:z-[2] after:bg-gradient-to-r after:from-[rgb(var(--main-bg-color),0)] after:to-[rgb(var(--main-bg-color),1)] hover:[&>ul]:pause">
+                <div className="w-full overflow-x-hidden whitespace-nowrap overflow-y-visible relative before:absolute before:top-0 before:left-0 before:w-[250px] before:h-full before:content-[''] before:z-2 before:bg-linear-to-l before:from-[rgb(255,255,255,0)] before:to-[rgb(255,255,255,1)] after:absolute after:top-0 after:right-0 after:w-[250px] after:h-full after:content-[''] after:z-2 after:bg-linear-to-r after:from-[rgb(255,255,255,0)] after:to-[rgb(255,255,255,1)]">
                     <EmployersLogos />
                     <EmployersLogos />
                 </div>
@@ -105,7 +105,7 @@ export const Home = () => {
 const EmployersLogos = () => (
     <ul
         role="list"
-        className="min-w-full flex-row flex-nowrap inline-flex justify-around items-center animate-[slide_20s_infinite_linear] overflow-y-visible [&>*]:inline [&>*]:flex-[1_1_auto] [&_img]:brightness-125 [&_img]:max-h-[20vh] [&_img]:max-w-[200px] [&_img]:mx-10 [&_img]:my-0"
+        className="min-w-full flex-row flex-nowrap inline-flex justify-around items-center animate-[slide_20s_infinite_linear] overflow-y-visible *:inline *:flex-[1_1_auto] [&_img]:brightness-125 [&_img]:max-h-[20vh] [&_img]:max-w-[200px] [&_img]:mx-10 [&_img]:my-0"
     >
         <li>
             <img src={ocuco} alt="Ocuco" />

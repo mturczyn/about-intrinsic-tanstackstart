@@ -6,6 +6,12 @@ body {
     margin: 0 auto;
 }
 
+@layer utilities {
+    .pause {
+        animation-play-state: paused;
+    }
+}
+
 /* 🌍 Global typography and link styles */
 @layer base {
     html {
