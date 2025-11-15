@@ -7,7 +7,7 @@ import {
     useRouter,
 } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { setSsrLanguage } from '../i18n'
+import i18n, { setSsrLanguage } from '@/i18n'
 import appCss from '@/styles/app.css?url'
 
 export const Route = createRootRoute({
@@ -15,7 +15,9 @@ export const Route = createRootRoute({
         await setSsrLanguage()
     },
     head: () => {
-        const title = 'Intrinsic | Web Development and Programming'
+        const title = i18n.t(
+            'Intrinsic | Web Development and Programming | Zabrze'
+        )
         return {
             meta: [
                 {
@@ -50,6 +52,13 @@ export const Route = createRootRoute({
                 {
                     rel: 'stylesheet',
                     href: appCss,
+                },
+            ],
+            scripts: [
+                {
+                    async: true,
+                    defer: true,
+                    src: `https://www.google.com/recaptcha/enterprise.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`,
                 },
             ],
         }

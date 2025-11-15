@@ -1,14 +1,14 @@
-import arcelorMittal from '@/images/employers-logos/arcelormittal.png'
-import flightScope from '@/images/employers-logos/Flightscope.webp'
-import exadel from '@/images/employers-logos/exadel.png'
-import rite from '@/images/employers-logos/rite-nrg.png'
-import rac from '@/images/employers-logos/rac.png'
-import rsm from '@/images/employers-logos/rsm.png'
-import ocuco from '@/images/employers-logos/ocuco-logo.png'
-import cSharpLogoHash from '@/images/programming-languages-logo/c-sharp-hash.png'
-import cSharpLogoWithoutHash from '@/images/programming-languages-logo/c-sharp-without-hash.png'
-import jsLogo from '@/images/programming-languages-logo/js-logo.webp'
-import reactLogo from '@/images/react-logo.svg'
+import arcelorMittal from '@/images/employers-logos/arcelormittal.png?small'
+import flightScope from '@/images/employers-logos/Flightscope.webp?small'
+import exadel from '@/images/employers-logos/exadel.png?small'
+import rite from '@/images/employers-logos/rite-nrg.png?small'
+import rac from '@/images/employers-logos/rac.png?small'
+import rsm from '@/images/employers-logos/rsm.png?small'
+import ocuco from '@/images/employers-logos/ocuco-logo.png?small'
+import cSharpLogoHash from '@/images/programming-languages-logo/c-sharp-hash.png?small'
+import cSharpLogoWithoutHash from '@/images/programming-languages-logo/c-sharp-without-hash.png?small'
+import jsLogo from '@/images/programming-languages-logo/js-logo.webp?small'
+import reactLogo from '@/images/react-logo.svg?small'
 import { Trans, useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
 
@@ -26,7 +26,7 @@ export const Home = () => {
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(255,255,255)]">
                     <img
-                        src={authorImage400}
+                        src={`${authorImage400}`}
                         srcSet={`
                             ${authorImage100} 400w,
                             ${authorImage200} 800w,
