@@ -1,6 +1,8 @@
-import { createServerFn, createServerOnlyFn } from '@tanstack/react-start'
+import { createServerFn } from '@tanstack/react-start'
 
 export async function getRecaptchaToken(action): Promise<string> {
+    await waitForRecaptcha(1000)
+
     if (!(window as any)?.grecaptcha?.enterprise) {
         throw new Error('reCAPTCHA not available')
     }
@@ -36,7 +38,7 @@ export const verifyRecaptchaToken = createServerFn({ method: 'POST' })
         )
         const data = await verifyRes.json()
         // v3 returns { success, score, action, ... }
-        const minScore = 0.8
+        const minScore = import.meta.env.RECAPTCHA_MIN_SCORE || 0.7
 
         if (!data.success || (data.score && data.score < minScore)) {
             throw new Response('Recaptcha failed', { status: 403 })
@@ -44,3 +46,13 @@ export const verifyRecaptchaToken = createServerFn({ method: 'POST' })
 
         return { ok: true }
     })
+
+async function waitForRecaptcha(timeoutMs: number) {
+    const start = Date.now()
+    while (!(window as any)?.grecaptcha?.enterprise) {
+        if (Date.now() - start > timeoutMs) {
+            throw new Error('Timeout waiting for reCAPTCHA to load')
+        }
+        await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+}

@@ -16,6 +16,7 @@ import authorImage100 from '@/images/author-image.jpg?small'
 import authorImage200 from '@/images/author-image.jpg?medium'
 import authorImage400 from '@/images/author-image.jpg?big'
 import authorImage from '@/images/author-image.jpg'
+import { Link } from '@tanstack/react-router'
 
 export const Home = () => {
     const { t } = useTranslation()
@@ -39,6 +40,9 @@ export const Home = () => {
                         alt="Author"
                         className="rounded-[10%] w-[30%] float-right m-6 mr-8 pointer-events-none"
                     />
+                    <Link to="/{-$locale}/contact-info">
+                        {t('Contact info')}
+                    </Link>
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
@@ -46,24 +50,24 @@ export const Home = () => {
                     <div className="float-left m-6 w-[30%] grid place-items-center grid-cols-[2fr_1fr] grid-rows-2 [grid-template-areas:'csharp_js'_'csharp_react']">
                         <div className="relative [grid-area:csharp]">
                             <img
-                                src={cSharpLogoWithoutHash}
+                                src={`${cSharpLogoWithoutHash}`}
                                 alt="C#"
                                 className="w-full h-full object-contain"
                             />
                             <img
-                                src={cSharpLogoHash}
+                                src={`${cSharpLogoHash}`}
                                 alt="C# hash"
                                 className="absolute h-[20%] left-[72%] top-[40%] animate-[rotateY_7s_infinite_linear]"
                             />
                         </div>
                         <img
-                            src={jsLogo}
+                            src={`${jsLogo}`}
                             alt="JavaScript"
                             className="w-full h-full object-contain [grid-area:js]"
                         />
                         <div className="[grid-area:react] m-[0.7ch]">
                             <img
-                                src={reactLogo}
+                                src={`${reactLogo}`}
                                 alt="React"
                                 className="w-full h-full object-contain animate-[rotateZ_7s_infinite_linear]"
                             />
@@ -108,25 +112,25 @@ const EmployersLogos = () => (
         className="min-w-full flex-row flex-nowrap inline-flex justify-around items-center animate-[slide_20s_infinite_linear] overflow-y-visible *:inline *:flex-[1_1_auto] [&_img]:brightness-125 [&_img]:max-h-[20vh] [&_img]:max-w-[200px] [&_img]:mx-10 [&_img]:my-0"
     >
         <li>
-            <img src={ocuco} alt="Ocuco" />
+            <img src={`${ocuco}`} alt="Ocuco" />
         </li>
         <li>
-            <img src={arcelorMittal} alt="ArcelorMittal" />
+            <img src={`${arcelorMittal}`} alt="ArcelorMittal" />
         </li>
         <li>
-            <img src={flightScope} alt="FlightScope" />
+            <img src={`${flightScope}`} alt="FlightScope" />
         </li>
         <li>
-            <img src={exadel} alt="Exadel" />
+            <img src={`${exadel}`} alt="Exadel" />
         </li>
         <li>
-            <img src={rite} alt="RiteNRG" />
+            <img src={`${rite}`} alt="RiteNRG" />
         </li>
         <li>
-            <img src={rsm} alt="RSM" />
+            <img src={`${rsm}`} alt="RSM" />
         </li>
         <li>
-            <img src={rac} alt="RAC" />
+            <img src={`${rac}`} alt="RAC" />
         </li>
     </ul>
 )
