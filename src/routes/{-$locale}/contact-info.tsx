@@ -1,5 +1,9 @@
 import i18n from '@/i18n'
-import { getRecaptchaToken, verifyRecaptchaToken } from '@/utils/recaptcha'
+import {
+    getRecaptchaToken,
+    recaptchaScriptId,
+    verifyRecaptchaToken,
+} from '@/utils/recaptcha'
 import { createFileRoute } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useState, useEffect } from 'react'
@@ -39,6 +43,7 @@ export const Route = createFileRoute('/{-$locale}/contact-info')({
             ],
             scripts: [
                 {
+                    id: recaptchaScriptId,
                     // async: true,
                     // defer: true,
                     src: `https://www.google.com/recaptcha/enterprise.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`,

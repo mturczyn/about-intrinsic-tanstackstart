@@ -1,7 +1,9 @@
 import { createServerFn } from '@tanstack/react-start'
 
+export const recaptchaScriptId = 'recaptcha-script'
+
 export async function getRecaptchaToken(action): Promise<string> {
-    await waitForRecaptcha(1000)
+    await waitForRecaptchaScriptLoad()
 
     if (!(window as any)?.grecaptcha?.enterprise) {
         throw new Error('reCAPTCHA not available')
@@ -11,7 +13,7 @@ export async function getRecaptchaToken(action): Promise<string> {
         ;(window as any).grecaptcha.enterprise.ready(async () => {
             resolve(
                 await (window as any).grecaptcha.enterprise.execute(
-                    '6Le6eAwsAAAAAMa50QvuVezPhBxtxIZ5QYHbgC0D',
+                    import.meta.env.VITE_RECAPTCHA_SITE_KEY,
                     { action }
                 )
             )
@@ -47,12 +49,30 @@ export const verifyRecaptchaToken = createServerFn({ method: 'POST' })
         return { ok: true }
     })
 
-async function waitForRecaptcha(timeoutMs: number) {
-    const start = Date.now()
-    while (!(window as any)?.grecaptcha?.enterprise) {
-        if (Date.now() - start > timeoutMs) {
-            throw new Error('Timeout waiting for reCAPTCHA to load')
+function waitForRecaptchaScriptLoad(): Promise<void> {
+    return new Promise((resolve, reject) => {
+        // Check if grecaptcha is already available
+        if ((window as any)?.grecaptcha?.enterprise) {
+            resolve()
+            return
         }
-        await new Promise((resolve) => setTimeout(resolve, 100))
-    }
+
+        // Check if script element exists
+        const script = document.getElementById(
+            recaptchaScriptId
+        ) as HTMLScriptElement
+
+        if (!script) {
+            reject(
+                new Error(
+                    "reCAPTCHA script element not found. Make sure it's defined in route head."
+                )
+            )
+            return
+        }
+
+        script.addEventListener('load', () => {
+            resolve()
+        })
+    })
 }
