@@ -1,4 +1,7 @@
+import { AnchorWithNewPage } from '@/components/AnchorWithNewPage'
+import { ContactInfoEntry } from '@/components/ContactInfoEntry'
 import i18n from '@/i18n'
+import { getContactInformation } from '@/utils/contact-info'
 import {
     getRecaptchaToken,
     recaptchaScriptId,
@@ -7,6 +10,13 @@ import {
 import { createFileRoute } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { MdOutlineEmail } from 'react-icons/md'
+import { CiLinkedin } from 'react-icons/ci'
+import { BsTelephone } from 'react-icons/bs'
+import { FaStackOverflow } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa'
+import { CiLocationOn } from 'react-icons/ci'
 
 export const Route = createFileRoute('/{-$locale}/contact-info')({
     component: ContactInfoPage,
@@ -54,33 +64,49 @@ export const Route = createFileRoute('/{-$locale}/contact-info')({
 })
 
 function ContactInfoPage() {
-    const [authorized, setAuthorized] = useState<null | boolean>(null)
+    const [loadingContactInfo, setLoadingContactInfo] = useState(true)
+    const [isHuman, setIsHuman] = useState<null | boolean>(null)
+    const [contactInfo, setContactInfo] = useState<null | Awaited<
+        ReturnType<typeof getContactInformation>
+    >>(null)
 
     const verifyRecaptchaTokenFn = useServerFn(verifyRecaptchaToken)
+    const getContactInformationFn = useServerFn(getContactInformation)
+    const { t } = useTranslation()
+
+    // const { data, isPending, error } = useQuery({
+    //     queryKey: ['contactInformation'],
+    //     queryFn: (token: string) => getContactInformationFn({ data: token }),
+    // })
 
     useEffect(() => {
-        async function run() {
+        async function checkHuman() {
             try {
                 const token = await getRecaptchaToken('visit_contact_info')
                 await verifyRecaptchaTokenFn({ data: token }) // server-only call
-                setAuthorized(true)
+                // Here we passed human verification
+                setIsHuman(true)
+                setLoadingContactInfo(true)
+                const info = await getContactInformationFn({ data: token })
+                setContactInfo(info)
+                setLoadingContactInfo(false)
             } catch (err) {
                 console.error(
                     'ContactInfoPage',
                     'recaptcha verification failed:',
                     err
                 )
-                setAuthorized(false)
+                setIsHuman(false)
             }
         }
-        run()
+        checkHuman()
     }, [])
 
-    if (authorized === null) {
+    if (isHuman === null) {
         return <div>Verifying…</div>
     }
 
-    if (authorized === false) {
+    if (isHuman === false) {
         return (
             <div style={{ color: 'red' }}>
                 Access denied (reCAPTCHA verification failed)
@@ -88,9 +114,48 @@ function ContactInfoPage() {
         )
     }
 
+    if (loadingContactInfo) {
+        return <div>Loading contact information…</div>
+    }
+
+    if (!contactInfo) {
+        return <div>Could not fetch contact information.</div>
+    }
+
     return (
-        <div>
-            <strong>About</strong> me!
-        </div>
+        <header>
+            {/* <img src={websiteLogo} alt="Intrinsic Michał Turczyn logo"></img> */}
+            <h1>INTRINSIC</h1>
+            <div>
+                <ContactInfoEntry icon={<BsTelephone />}>
+                    <a href={`tel:${contactInfo.phoneNumber.replace(' ', '')}`}>
+                        {contactInfo.phoneNumber}
+                    </a>
+                </ContactInfoEntry>
+                <ContactInfoEntry icon={<MdOutlineEmail />}>
+                    <a href={`mailto:${contactInfo.email}`}>
+                        {contactInfo.email}
+                    </a>
+                </ContactInfoEntry>
+                <ContactInfoEntry icon={<CiLocationOn />}>
+                    Zabrze, {t('Poland')}
+                </ContactInfoEntry>
+                <ContactInfoEntry icon={<CiLinkedin />}>
+                    <AnchorWithNewPage href={contactInfo.linkedIn}>
+                        linkedin.com
+                    </AnchorWithNewPage>
+                </ContactInfoEntry>
+                <ContactInfoEntry icon={<FaStackOverflow />}>
+                    <AnchorWithNewPage href={contactInfo.stackOverflow}>
+                        stackoverflow.com
+                    </AnchorWithNewPage>
+                </ContactInfoEntry>
+                <ContactInfoEntry icon={<FaGithub />}>
+                    <AnchorWithNewPage href={contactInfo.github}>
+                        github.com
+                    </AnchorWithNewPage>
+                </ContactInfoEntry>
+            </div>
+        </header>
     )
 }
