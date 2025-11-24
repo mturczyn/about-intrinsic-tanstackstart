@@ -5,10 +5,14 @@ import {
     HeadContent,
     Scripts,
     useRouter,
+    Link,
+    useLocation,
+    useNavigate,
 } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import i18n, { setSsrLanguage } from '@/i18n'
 import appCss from '@/styles/app.css?url'
+import Navbar from '@/components/Navbar'
 
 export const Route = createRootRoute({
     beforeLoad: async () => {
@@ -71,21 +75,29 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     const { i18n } = useTranslation()
     const router = useRouter()
 
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const handleLanguageChange = (lang: string) => {
+        const [language, ...path] = location.pathname.slice(1).split('/')
+        navigate({ to: `/${lang}/${path.join('/')}`, replace: true })
+        // router.invalidate()
+    }
+
     useEffect(() => {
-        const handler = () => {
-            router.invalidate()
-        }
-        i18n.on('languageChanged', handler)
+        i18n.on('languageChanged', handleLanguageChange)
         return () => {
-            i18n.off('languageChanged', handler)
+            i18n.off('languageChanged', handleLanguageChange)
         }
     }, [router])
+
     return (
         <html lang={i18n.language}>
             <head>
                 <HeadContent />
             </head>
             <body>
+                <Navbar />
                 {children}
                 <Scripts />
             </body>

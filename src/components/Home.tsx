@@ -10,8 +10,6 @@ import cSharpLogoWithoutHash from '@/images/programming-languages-logo/c-sharp-w
 import jsLogo from '@/images/programming-languages-logo/js-logo.webp?small'
 import reactLogo from '@/images/react-logo.svg?small'
 import { Trans, useTranslation } from 'react-i18next'
-import LanguageSwitcher from './LanguageSwitcher'
-
 import authorImage100 from '@/images/author-image.jpg?small'
 import authorImage200 from '@/images/author-image.jpg?medium'
 import authorImage400 from '@/images/author-image.jpg?big'
@@ -23,7 +21,6 @@ export const Home = () => {
 
     return (
         <>
-            <LanguageSwitcher />
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(255,255,255)]">
                     <img
@@ -40,9 +37,6 @@ export const Home = () => {
                         alt="Author"
                         className="rounded-[10%] w-[30%] float-right m-6 mr-8 pointer-events-none"
                     />
-                    <Link to="/{-$locale}/contact-info">
-                        {t('Contact info')}
-                    </Link>
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>

@@ -1,14 +1,19 @@
-import React from 'react'
 import plFlag from '@/images/flags/pl.svg'
 import gbFlag from '@/images/flags/gb.svg'
-import i18n, { SUPPORTED_LANGUAGES } from '@/i18n'
+import { SUPPORTED_LANGUAGES } from '@/i18n'
+import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 
-export default function LanguageSwitcher() {
+export default function Navbar() {
+    const { i18n, t } = useTranslation()
+
     return (
-        <div className="flex items-center gap-3 justify-end p-2">
+        <nav className="flex items-center gap-3 justify-end p-2">
+            <Link to="/{-$locale}">{t('Home')}</Link>
+            <Link to="/{-$locale}/contact-info">{t('Contact info')}</Link>
             <button
                 onClick={() => i18n.changeLanguage(SUPPORTED_LANGUAGES.en)}
-                className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 hover:scale-105 transition-transform"
+                className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 hover:scale-105 transition-transform ml-auto"
                 title="English"
             >
                 <img
@@ -29,6 +34,6 @@ export default function LanguageSwitcher() {
                     className="w-full h-full object-cover"
                 />
             </button>
-        </div>
+        </nav>
     )
 }

@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import { getRequestUrl } from '@tanstack/react-start/server'
 
-export const SUPPORTED_LANGUAGES = { pl: 'pl-PL', en: 'en-US' }
+export const SUPPORTED_LANGUAGES = { pl: 'pl', en: 'en' }
 
 // the translations
 // (tip move them in a JSON file and import them,
