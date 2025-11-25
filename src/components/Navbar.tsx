@@ -11,6 +11,7 @@ export default function Navbar() {
         <nav className="flex items-center gap-3 justify-end p-2">
             <Link to="/{-$locale}">{t('Home')}</Link>
             <Link to="/{-$locale}/contact-info">{t('Contact info')}</Link>
+
             <button
                 onClick={() => i18n.changeLanguage(SUPPORTED_LANGUAGES.en)}
                 className="w-10 h-10 rounded-full overflow-hidden border border-gray-300 hover:scale-105 transition-transform ml-auto"

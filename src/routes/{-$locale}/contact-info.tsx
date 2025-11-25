@@ -7,7 +7,7 @@ import {
     recaptchaScriptId,
     verifyRecaptchaToken,
 } from '@/utils/recaptcha'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { useServerFn } from '@tanstack/react-start'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,9 +17,18 @@ import { BsTelephone } from 'react-icons/bs'
 import { FaStackOverflow } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
 import { CiLocationOn } from 'react-icons/ci'
+import { validateLocale } from '@/i18n/validateLocale'
 
 export const Route = createFileRoute('/{-$locale}/contact-info')({
     component: ContactInfoPage,
+    beforeLoad: async ({ params }) => {
+        if (!validateLocale(params.locale)) {
+            throw redirect({
+                to: '/{-$locale}/contact-info',
+                params: { locale: 'en' },
+            })
+        }
+    },
     head: () => {
         const title = i18n.t(
             'Intrinsic | Web Development and Programming | Contact info'

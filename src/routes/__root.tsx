@@ -75,13 +75,19 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     const { i18n } = useTranslation()
     const router = useRouter()
 
-    const location = useLocation()
-    const navigate = useNavigate()
+    // const location = useLocation()
+    // const navigate = useNavigate()
 
     const handleLanguageChange = (lang: string) => {
-        const [language, ...path] = location.pathname.slice(1).split('/')
-        navigate({ to: `/${lang}/${path.join('/')}`, replace: true })
-        // router.invalidate()
+        // const [language, ...path] = location.pathname.slice(1).split('/')
+        // console.log('location', location)
+        // console.log('lang', lang)
+        // console.log('language', language)
+        // console.log('path', path)
+        // console.log('`/${lang}/${path.join(/)}`', `/${lang}/${path.join('/')}`)
+
+        // navigate({ to: `/${lang}/${location.pathname}`, replace: true })
+        router.invalidate()
     }
 
     useEffect(() => {

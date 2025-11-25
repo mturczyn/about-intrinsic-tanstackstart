@@ -26,9 +26,12 @@ i18n.use(LanguageDetector)
         resources,
         fallbackLng: SUPPORTED_LANGUAGES.en,
         supportedLngs: Object.values(SUPPORTED_LANGUAGES), // add your supported languages
-        debug: true,
+        debug: false,
         interpolation: {
-            escapeValue: false, // react already escapes
+            // react already escapes,
+            // generally, escaping prevents xss attacks by
+            // escaping any html special characters (<, >, &, ', ")
+            escapeValue: false,
         },
         // backend: {
         //     loadPath: '/locales/{{lng}}/{{ns}}.json',
