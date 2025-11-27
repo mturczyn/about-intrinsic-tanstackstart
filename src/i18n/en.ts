@@ -1,4 +1,9 @@
 export const en = {
+    verifyingRecaptcha: 'Verifying reCAPTCHA',
+    recaptchaFailedAccessDenied:
+        'Access denied (reCAPTCHA verification failed)',
+    loadingContactInformation: 'Loading contact information...',
+    couldNotFetchContactInformation: 'Could not fetch contact information.',
     chatPageTitle: 'Chat with AI powered bot',
     chatbotIntro:
         'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}. Model {{modelToUse}} will be used in this conversation.',

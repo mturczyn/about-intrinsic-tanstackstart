@@ -1,4 +1,10 @@
 export const pl = {
+    verifyingRecaptcha: 'Weryfikacja reCAPTCHA',
+    recaptchaFailedAccessDenied:
+        'Dostęp zabroniony (weryfikacja reCAPTCHA nie powiodła się)',
+    loadingContactInformation: 'Ładowanie informacji kontaktowych...',
+    couldNotFetchContactInformation:
+        'Nie można pobrać informacji kontaktowych.',
     chatPageTitle: 'Porozmawiaj z botem AI',
     chatbotIntro:
         'Cześć, jestem chatbotem opartym na modelu językowym. Dostępne modele językowe: {{modelsList}}. Model {{modelToUse}} zostanie użyty w trakcie tej rozmowy',

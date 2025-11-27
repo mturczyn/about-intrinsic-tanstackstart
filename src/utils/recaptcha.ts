@@ -26,8 +26,8 @@ export async function getRecaptchaToken(action): Promise<string> {
 export const verifyRecaptchaToken = createServerFn({ method: 'POST' })
     .inputValidator((recaptchaToken: string) => recaptchaToken)
     .handler(async ({ data: recaptchaToken }) => {
-        await verifyRecaptchaTokenCore(recaptchaToken)
-        return { ok: true }
+        const ok = await verifyRecaptchaTokenCore(recaptchaToken)
+        return { ok }
     })
 
 function waitForRecaptchaScriptLoad(): Promise<void> {
@@ -71,11 +71,13 @@ export async function verifyRecaptchaTokenCore(recaptchaToken: string) {
             body: params,
         }
     )
-    const data = await verifyRes.json()
+    const { success, score } = await verifyRes.json()
     // v3 returns { success, score, action, ... }
     const minScore = import.meta.env.RECAPTCHA_MIN_SCORE || 0.7
 
-    if (!data.success || (data.score && data.score < minScore)) {
-        throw new Response('Recaptcha failed', { status: 403 })
-    }
+    return success && score && score >= minScore
+    // if (!data.success || (data.score && data.score < minScore)) {
+    //     // throw new Response('Recaptcha failed', { status: 403 })
+    //     return false
+    // }
 }

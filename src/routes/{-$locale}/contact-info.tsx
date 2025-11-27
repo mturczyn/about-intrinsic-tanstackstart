@@ -18,6 +18,8 @@ import { FaStackOverflow } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
 import { CiLocationOn } from 'react-icons/ci'
 import { validateLocale } from '@/i18n/validateLocale'
+import websiteLogo from '@/images/website-logo-white.svg'
+import { BounceLoader } from '@/components/BounceLoader'
 
 export const Route = createFileRoute('/{-$locale}/contact-info')({
     component: ContactInfoPage,
@@ -92,50 +94,72 @@ function ContactInfoPage() {
         async function checkHuman() {
             try {
                 const token = await getRecaptchaToken('visit_contact_info')
-                await verifyRecaptchaTokenFn({ data: token }) // server-only call
+                const { ok: success } = await verifyRecaptchaTokenFn({
+                    data: token,
+                }) // server-only call
                 // Here we passed human verification
-                setIsHuman(true)
+                setIsHuman(success)
+                if (!success) {
+                    console.error(
+                        'ContactInfoPage',
+                        'recaptcha verification failed'
+                    )
+                    return
+                }
                 setLoadingContactInfo(true)
                 const info = await getContactInformationFn({ data: token })
                 setContactInfo(info)
                 setLoadingContactInfo(false)
             } catch (err) {
-                console.error(
-                    'ContactInfoPage',
-                    'recaptcha verification failed:',
-                    err
-                )
                 setIsHuman(false)
+                setLoadingContactInfo(false)
             }
         }
         checkHuman()
     }, [])
 
     if (isHuman === null) {
-        return <div>Verifying…</div>
+        return (
+            <div className="grid gap-4 place-items-center mt-10">
+                <BounceLoader />
+                {t('verifyingRecaptcha')}
+            </div>
+        )
     }
 
     if (isHuman === false) {
         return (
-            <div style={{ color: 'red' }}>
-                Access denied (reCAPTCHA verification failed)
+            <div className="text-red-600 text-center mt-10">
+                {t('recaptchaFailedAccessDenied')}
             </div>
         )
     }
 
     if (loadingContactInfo) {
-        return <div>Loading contact information…</div>
+        return (
+            <div className="grid gap-4 place-items-center mt-10">
+                <BounceLoader />
+                <div>{t('loadingContactInformation')}</div>
+            </div>
+        )
     }
 
     if (!contactInfo) {
-        return <div>Could not fetch contact information.</div>
+        return (
+            <div className="text-red-600 text-center mt-10">
+                {t('couldNotFetchContactInformation')}
+            </div>
+        )
     }
 
     return (
-        <header>
-            {/* <img src={websiteLogo} alt="Intrinsic Michał Turczyn logo"></img> */}
-            <h1>INTRINSIC</h1>
-            <div>
+        <header className="grid grid-cols-[auto_auto] grid-rows-[2fr_1fr] gap-10 py-10">
+            <img
+                src={websiteLogo}
+                className="drop-shadow-[0_0_25px_rgb(0_0_0/1)] h-full place-self-center"
+                alt="Intrinsic Michał Turczyn logo"
+            ></img>
+            <div className="flex flex-col align-stretch row-span-2 h-full *:flex-1">
                 <ContactInfoEntry icon={<BsTelephone />}>
                     <a href={`tel:${contactInfo.phoneNumber.replace(' ', '')}`}>
                         {contactInfo.phoneNumber}
@@ -165,6 +189,9 @@ function ContactInfoPage() {
                     </AnchorWithNewPage>
                 </ContactInfoEntry>
             </div>
+            <h1 className="text-shadow-[0_0_25px_rgb(0_0_0/1)] text-white place-self-center">
+                INTRINSIC
+            </h1>
         </header>
     )
 }
