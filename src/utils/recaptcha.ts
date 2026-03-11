@@ -72,8 +72,9 @@ export async function verifyRecaptchaTokenCore(recaptchaToken: string) {
         }
     )
     const { success, score } = await verifyRes.json()
+
     // v3 returns { success, score, action, ... }
-    const minScore = import.meta.env.RECAPTCHA_MIN_SCORE || 0.7
+    const minScore = parseFloat(process.env.RECAPTCHA_MIN_SCORE || '0.7')
 
     return success && score && score >= minScore
     // if (!data.success || (data.score && data.score < minScore)) {
