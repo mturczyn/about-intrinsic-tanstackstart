@@ -22,7 +22,6 @@ export const Home = () => {
         <>
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(255,255,255)]">
-                    <h1>CI/CD TEST</h1>
                     <img
                         src={`${authorImage400}`}
                         srcSet={`
