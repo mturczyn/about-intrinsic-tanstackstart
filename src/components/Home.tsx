@@ -14,7 +14,6 @@ import authorImage100 from '@/images/author-image.jpg?small'
 import authorImage200 from '@/images/author-image.jpg?medium'
 import authorImage400 from '@/images/author-image.jpg?big'
 import authorImage from '@/images/author-image.jpg'
-import { Link } from '@tanstack/react-router'
 
 export const Home = () => {
     const { t } = useTranslation()
@@ -23,6 +22,7 @@ export const Home = () => {
         <>
             <div className="[&_p]:my-4 [&_p]:mx-4 [&_h1]:mx-4 [&_p]:leading-7">
                 <header className="bg-[rgb(255,255,255)]">
+                    <h1>CI/CD TEST</h1>
                     <img
                         src={`${authorImage400}`}
                         srcSet={`
