@@ -76,6 +76,8 @@ export async function verifyRecaptchaTokenCore(recaptchaToken: string) {
     // v3 returns { success, score, action, ... }
     const minScore = parseFloat(process.env.RECAPTCHA_MIN_SCORE || '0.7')
 
+    console.log('reCAPTCHA verification result:', { success, score, minScore })
+
     return success && score && score >= minScore
     // if (!data.success || (data.score && data.score < minScore)) {
     //     // throw new Response('Recaptcha failed', { status: 403 })
