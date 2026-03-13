@@ -7,6 +7,8 @@
 	],
 	"main": "@tanstack/react-start/server-entry",
 	"vars": {
-		"RECAPTCHA_MIN_SCORE": "0.8"
+		"RECAPTCHA_MIN_SCORE": "0.8",
+		"VITE_RECAPTCHA_SITE_KEY": "your-recaptcha-site-key",
+		"RECAPTCHA_SECRET_KEY": "your-recaptcha-secret-key"
 	}
 }
