@@ -39,6 +39,7 @@ export const pl = {
     },
     pastEmployers: 'Poprzedni pracodawcy',
     Poland: 'Polska',
+    taxId: 'NIP',
     // technologyStackPage
     Theming: 'Motywy',
     themingDescription:

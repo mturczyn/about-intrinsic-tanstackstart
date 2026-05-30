@@ -19,5 +19,6 @@ export const getContactInformation = createServerFn({ method: 'GET' })
             stackOverflow:
                 'https://stackoverflow.com/users/7132550/michał-turczyn',
             github: 'https://github.com/mturczyn',
+            taxId: '9910468704',
         }
     })

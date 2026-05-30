@@ -20,6 +20,7 @@ import { CiLocationOn } from 'react-icons/ci'
 import { validateLocale } from '@/i18n/validateLocale'
 import websiteLogo from '@/images/website-logo-white.svg'
 import { BounceLoader } from '@/components/BounceLoader'
+import { TbTax } from 'react-icons/tb'
 
 export const Route = createFileRoute('/{-$locale}/contact-info')({
     component: ContactInfoPage,
@@ -80,6 +81,7 @@ function ContactInfoPage() {
     const [contactInfo, setContactInfo] = useState<null | Awaited<
         ReturnType<typeof getContactInformation>
     >>(null)
+    const [taxIdVisible, setTaxIdVisible] = useState(false)
 
     const verifyRecaptchaTokenFn = useServerFn(verifyRecaptchaToken)
     const getContactInformationFn = useServerFn(getContactInformation)
@@ -155,6 +157,7 @@ function ContactInfoPage() {
     return (
         <header className="grid grid-cols-[auto_auto] grid-rows-[2fr_1fr] gap-10 py-10">
             <img
+                onClick={() => setTaxIdVisible((visible) => !visible)}
                 src={websiteLogo}
                 className="drop-shadow-[0_0_25px_rgb(0_0_0/1)] h-full place-self-center"
                 alt="Intrinsic Michał Turczyn logo"
@@ -188,6 +191,11 @@ function ContactInfoPage() {
                         github.com
                     </AnchorWithNewPage>
                 </ContactInfoEntry>
+                {taxIdVisible && (
+                    <ContactInfoEntry icon={<TbTax />}>
+                        {t('taxId')}: {contactInfo.taxId}
+                    </ContactInfoEntry>
+                )}
             </div>
             <h1 className="text-shadow-[0_0_25px_rgb(0_0_0/1)] text-white place-self-center">
                 INTRINSIC

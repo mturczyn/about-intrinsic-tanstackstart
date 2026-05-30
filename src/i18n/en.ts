@@ -34,7 +34,7 @@ export const en = {
     },
     pastEmployers: 'Past employers',
     Poland: 'Poland',
-
+    taxId: 'Tax ID',
     // technologyStackPage
     Theming: 'Theming',
     themingDescription:
